@@ -1,0 +1,8 @@
+Why cloud is so polular or why companies are moving to cloud?
+Other than the cost of handling on-premise infrastructure also to get rid of maintenance overhead of on-premise infrastructure companies are moving to cloud.
+
+What is public cloud?
+The cloud which is managed by the cloud providers such as AWS, Azure, GCP. People or organizations request for resources such as compute, storage, networking etc and pay for these resources.
+
+What is private cloud?
+Organization itself manages the entire cloud platform and infrastructure. They uses Openstack, VMware xen to create their private cloud setup.
