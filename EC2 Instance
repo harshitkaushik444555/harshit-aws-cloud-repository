@@ -1,0 +1,17 @@
+What is EC2?
+EC2 means Elastic Compute Cloud. When you request for an ec2 instance it means you are requesting aws to give a VM or virtual server which is elastic in nature.
+
+Elastic = Scaled up and scaled down i.e. resources can be increased or decreased 
+Cloud = A cloud platform
+Compute = CPU + RAM + Disk
+
+Why we need EC2?
+It reduces the overhead of managing the server. It is cost friendly because of pay-as-you-go model it means you can scale down some of the servers in holidays when there is no so much load.You don't need to deal with timely upgrades, security issues, server maintenance because AWS will take care of it.
+
+what are the types of EC2?
+
+General purpose 
+Memory optimized
+Compute optimized
+Storage optimized
+Accelerated computing
