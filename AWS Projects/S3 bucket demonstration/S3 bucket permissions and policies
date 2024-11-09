@@ -37,6 +37,7 @@ Now, we will see how we can restrict access to S3 bucket using S3 bucket policie
 
 after doing so iam user will be able to list buckets but  can't see objects inside the bucket.
 
+The "Principal" element specifies who is allowed or denied access to the specified resources. It defines the AWS accounts, IAM users, or roles that the policy applies to.
 
 How S3 is cost effective?
 You can set s3 to delete the previous version of files after 10 days or any time or you can send the previos version of file to the deep archive or s3 glacier to reduce the cost.
