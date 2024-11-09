@@ -1,2 +1,0 @@
-Command to copy key pair from laptop to ec2 instance
-$ scp -i  C:\\Users\\Administrator\\Desktop\\demo-instance-key.pem C:\\Users\\Administrator\\Desktop\\demo-instance-key.pem ubuntu@13.201.69.92:/home/ubuntu
