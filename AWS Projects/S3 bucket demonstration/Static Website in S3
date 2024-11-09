@@ -1,0 +1,23 @@
+1. To host static website create a bucket and put index.html file in it.
+2. go to bucket properties and scroll to static website hosting
+3. edit it and enable it
+4. give html document name and save.
+5. but the public access is blocked so unblock it and access website using url.
+6. but website will not be accessible bcoz you will have to add a bucket policy to give permission to everyone to access bucket as follows
+
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "PublicReadGetObject",
+            "Effect": "Allow",
+            "Principal": "*",
+            "Action": [
+                "s3:GetObject"
+            ],
+            "Resource": [
+                "arn:aws:s3:::<Bucket-Name>/*"
+            ]
+        }
+    ]
+}
