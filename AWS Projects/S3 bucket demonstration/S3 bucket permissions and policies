@@ -36,3 +36,7 @@ Now, we will see how we can restrict access to S3 bucket using S3 bucket policie
 4. save and exit
 
 after doing so iam user will be able to list buckets but  can't see objects inside the bucket.
+
+
+How S3 is cost effective?
+You can set s3 to delete the previous version of files after 10 days or any time or you can send the previos version of file to the deep archive or s3 glacier to reduce the cost.
