@@ -1,0 +1,30 @@
+S3 is the most easy Service to learn.
+
+It solves the storage problem.
+
+The secret behind the success of S3 is 11 9's(99.99999999999). It is the number of reliability.It means aws says that if you are uploading 100 crore objects in s3 over the period of 100 years then only one object might  deleted. It means your objects in s3 will never get deleted.The reason is replication bcoz aws creates multiple replicas of objects.
+
+The S3 is the cloud storage service provided by the AWS.It allows you to store and retrieve any amount of data from anywhere on the web.
+
+You can store pictures, videos, log files, databases, backups, configurations files in s3.
+
+Objects in s3 are globally accessible using http/https.
+
+Anything you put in s3 is object.
+
+5 major advantages of s3:
+Availability and durability
+Scalability
+Security (access control policies, encryption)
+Cost effective (High input/output = high cost)
+Performance
+
+
+Options with S3:
+
+Versioning of objects
+Tags
+Server access logging
+Event notification
+Object lock
+Static website hosting
