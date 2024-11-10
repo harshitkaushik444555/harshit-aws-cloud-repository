@@ -1,0 +1,71 @@
+What is VPC?
+Amazon Virtual Private Cloud is a service that allows its users to launch their virtual machines in a protected as well as isolated virtual environment defined by them. You have complete control over your VPC, from creation to customization and even deletion.
+Amazon VPC can be referred to as the private cloud inside the cloud. It is a logical grouping of servers in a specified network. The servers that you are going to deploy in the Virtual Private Cloud(VPC) will be completely isolated from the other servers that are deployed in the Amazon Web Services. You can have complete control of the IP address to the virtual machines and route tables and gateways to the VPC. With the help of security groups and network access control lists, you can protect your application more.
+
+What are some Amazon VPC fundamentals?
+Amazon VPC (Virtual Private Cloud) Fundamentals
+If the subnet has internet access then it is called PublicSubnet.
+If the subnet doesn’t have internet access then it is called PrivateSubnet.
+A subnet must reside entirely within one Availability Zone. 
+An entire subnet must be contained within a single Availability Zone.
+Access between instances is managed by VPC Security Groups for both inbound and outgoing traffic (EC2 Security Groups can only define inbound rules).
+We can specify Subnet IP Routing with the aid of the Route Table.
+If a server/instance which is in a private subnet wants to reach the internet then it must have NAT in a public subnet.
+
+What is Amazon VPC  Architecture?
+The basic architecture of a properly functioning VPC consists of many distinct services such as Gateway, Load Balancer, Subnets, IGW etc. 
+
+What are Amazon VPC Components?
+VPC
+You can launch AWS resources into a defined virtual network using Amazon Virtual Private Cloud (Amazon VPC).
+
+SUBNET
+A subnet is a smaller portion of the network that typically includes all the machines in a certain area.
+We can add as many as subnets we need in one availability zone. Each subnet must reside entirely within one availability zone.
+The public subnets will be attached to Internet Gateway which enables Internet access.
+The private subnets will not have internet access.
+Each and every subnet which is presented in VPC must be associated with the routing table. 
+
+PUBLIC SUBNET
+A public subnet is a subnet where resources, such as EC2 instances, can be accessed directly from the internet.
+
+PRIVATE SUBNET
+A private subnet is a subnet (a smaller network within the VPC) where the resources do not have direct access to the internet. Private subnets are typically used to host resources that do not need to be publicly accessible, such as databases, backend services, and application servers that only need to communicate internally within the VPC.
+
+INTERNET GATEWAY
+With the help of IGW (Internet Gateway), the resources present (e.g: EC2) in the VPC will enable to access the Internet.
+One VPC can’t have more than one IGW 
+If resources are running in a certain VPC then IGW can not be detached from that particular VPC. 
+
+NAT GATEWAY
+NAT Gateway is a managed network address translation (NAT) service that allows resources in a private subnet to initiate outbound internet traffic without exposing them to internet.NAT Gateway must be deployed in a public subnet to communicate with the internet.
+
+LOAD BALANCER
+LB (Load Balancer) is a service that distributes incoming network traffic across multiple targets, such as EC2 instances, containers, IP addresses, or Lambda functions, to ensure high availability, reliability, and better application performance.LB is in public subnet which can talk to private subnet.Public users has access to LB.
+
+ROUTE TABLE
+Route Table contains a set of rules, called route which helps us to route the network traffic.
+A single VPC can have as many as route tables it requires.
+If the dependencies are attached to the route table then they can’t be deleted. 
+
+SECURITY GROUPS
+Security groups are a virtual firewall layer for controlling incoming and outgoing traffic to resources in a virtual network.
+
+NACL (Network Access Control Lists)
+The NACL security layer for VPC serves as a firewall to manage traffic entering and leaving one or more subnets.
+The NACL for the default VPC is active and connected to the default subnets.
+
+ELASTIC IP (EIP)
+Elastic IP is a static, public IPv4 address that can be assigned to instances in the VPC.
+
+What is NACL?
+It is pplied at subnet level. It says what kind of traffic you want to block at subnet level.If anything is blocked at subnet level then bydefault it will be blocked for all instances in that subnet.The rule with least number is first matched in NACL inbound rules.
+If you want to apply security at subnet level then it is known as NACL.
+
+What is security groups?
+If you want to apply security at EC2 instance level then it is known as security groups.SG has rules for inbound traffic and outbound traffic.
+In AWS inbound traffic is denied by default. And outbound traffic is allowed by default except port 25.
+
+What is the size of VPC?
+IP address ranfge is the size of VPC. e.g. 65536.
+
