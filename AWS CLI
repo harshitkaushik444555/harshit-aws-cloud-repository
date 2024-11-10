@@ -1,5 +1,37 @@
+To learn more go to aws cli reference docs.
+
+To authenticate aws cli with an aws account
+$aws configure
+
 To list the key pairs in a specific AWS region using the AWS CLI
 $aws ec2 describe-key-pairs --region <region-name>
 
 To list all AWS regions using the AWS CLI
 $aws ec2 describe-regions --all-regions
+
+To list only names of AWS regions using the AWS CLI
+$aws ec2 describe-regions --all-regions --query "Regions[].RegionName" --output text
+
+To create bucket using AWS CLI.If you are creating a bucket in a region other than us-east-1, you also need to specify the --create-bucket-configuration parameter like this:
+$aws s3api create-bucket --bucket my-example-bucket --region us-west-2 --create-bucket-configuration LocationConstraint=us-west-2
+
+or 
+
+$ aws s3 mb s3://<bucket-name>
+The bucket is created in the region specified in the user's configuration file
+
+To delete an S3 bucket using the AWS CLI
+$aws s3api delete-bucket --bucket <bucket-name> --region <region-name>
+
+To get security groups
+$ aws ec2 describe-security-groups --region ap-south-1
+
+To get subnets
+$ aws ec2 describe-subnets --region ap-south-1
+
+To create EC2 instance in AWS CLI
+$ aws ec2 run-instances --image-id ami-0866a3c8686eaeeba --instance-type t2.micro --key-name aws_instance_login --security-group-ids sg-083e7c9b42f5f62b6 --subnet-id subnet-0fb90b79ff2535fdd --region ap-south-1 --tag-specifications 'ResourceType=instance,Tags=[{Key=Name, Value=app-1-instance-1}]'
+
+
+
+
