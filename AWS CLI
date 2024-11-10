@@ -1,0 +1,2 @@
+To list the key pairs in a specific AWS region using the AWS CLI
+aws ec2 describe-key-pairs --region <region-name>
