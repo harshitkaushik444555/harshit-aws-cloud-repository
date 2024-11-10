@@ -1,3 +1,5 @@
+AWS UI is not automation friendly so AWS CLI comes into picture. AWS CLI is a python utility/program/application. CLI translates your request to an API call that aws understands. CLI is for quick use cases.It acts as middle man between user and AWS services. It changes aws commands to api requests and makes a call to the aws applications.
+
 To learn more go to aws cli reference docs.
 
 To authenticate aws cli with an aws account
