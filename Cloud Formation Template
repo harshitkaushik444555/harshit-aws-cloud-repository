@@ -1,0 +1,57 @@
+What is aws cloud formation template (CFT)?
+CFT is used to create infrastructure on aws. It implements the principle of IaC. CFT is like a middleman between the user and the aws cloud. User submits the yaml file to the cft and cft converts this yaml file to aws api calls to create resources on aws.
+
+What is the principle of IaC?
+Any tool which implements the principle of IaC:
+-has to be declarative in nature.
+-has to be versioned means yaml file can be put on any VCS platform such as github.
+
+What does it mean by declarative in nature?
+Declarative means what you see is what you have. It means that when you look at the template or yaml file then same infrastructure should be available on AWS.
+
+Why to use AWS CFT if we have AWS CLI?
+-CLI is suitable for short or quick actions such as bucket creation or listing buckets while CFT is useful when we want to create a complex infrastructure such as VPC, EC2 instance, S3 bucket creation at the same time.
+-CFT supports yaml and json.But yaml is used mostly because it is readable, supports commenting, depends on indentation.
+-CFT supports drift detection. It means it can detect changes made to the infrastructure created by CFT.
+
+Why aws cli is not an IaC tool?
+Because it does not implement the principle of IaC.AWS CLI is not considered an Infrastructure as Code (IaC) tool because it lacks several core characteristics that define IaC tools, primarily related to state management, declarative configuration, and automation of complex infrastructure management. Here’s a breakdown of why AWS CLI doesn’t meet the criteria for an IaC tool:
+
+Imperative vs. Declarative:
+AWS CLI: Operates in an imperative style, meaning you provide step-by-step instructions for what AWS should do. You explicitly run commands to create, update, or delete resources, like calling each API directly. This approach does not describe the desired end state of infrastructure, which makes it harder to ensure consistent infrastructure configurations.
+IaC Tools: Operate in a declarative style (e.g., AWS CloudFormation or Terraform). You define the desired end state of your infrastructure, and the tool determines the steps to reach that state. This approach makes it easier to ensure consistency and repeatability.
+
+State Management:
+AWS CLI: Doesn’t keep track of infrastructure state. Once a command is executed, there’s no record of it in the CLI itself. Any updates or changes require you to know the current state of resources and write commands accordingly.
+IaC Tools: Manage the state of your infrastructure. For example, Terraform maintains a state file, which records the state of your infrastructure and tracks changes over time, allowing for resource updates, rollbacks, and drift detection.
+
+Orchestration and Dependency Management:
+AWS CLI: Lacks built-in dependency management and orchestration. You must manually ensure that resources are created or deleted in the correct order, and you have to script any dependencies between resources. This can become complex and error-prone in larger infrastructure setups.
+IaC Tools: Handle dependencies automatically. They understand the relationships between resources and create, update, or delete them in the correct order. CloudFormation, for example, handles resource dependencies automatically and has rollback mechanisms if a deployment fails.
+
+Drift Detection and Consistency:
+AWS CLI: Doesn’t provide drift detection, meaning it doesn’t detect changes made to resources outside of the CLI. If manual changes are made to infrastructure, it’s up to the user to identify and reconcile those changes.
+IaC Tools: Include drift detection, which helps ensure that the infrastructure defined in code matches the actual deployed infrastructure. For example, CloudFormation can detect and report any changes made outside the template.
+
+Version Control and Collaboration:
+AWS CLI: Commands are executed individually and are not typically stored in a version-controlled format. While you could create scripts, it doesn’t provide the same structure or consistency as IaC templates do.
+IaC Tools: Are designed to work with version control systems, allowing infrastructure configurations to be tracked, reviewed, and managed in a way similar to application code. This makes IaC tools ideal for collaboration, code reviews, and controlled deployments.
+
+What is stack in CFT?
+Stack implements the template.Using this you can import yaml file to the aws cft from your laptop.This yaml file contains configurations related to infrastructure yocu want to create on aws.
+
+What is the structure of cft?
+Yaml file should have:
+-version
+-description
+-metadata
+-parameters
+-rules
+-mappings
+-conditions
+-resources
+only resources is mandatory.
+
+Note:
+-AWS create a bucket named cf-templates by default to save all templates in it.
+-To see practical of drift detection create a bucket with versioning using cft and suspend versioning manually. Now check drift detection using stack.
