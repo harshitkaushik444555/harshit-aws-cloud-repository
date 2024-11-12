@@ -1,0 +1,53 @@
+Questions related to AWS CICD process:
+
+What is CI ?
+Continuous Integration (CI) is a software development practice in which code changes are automatically integrated into a shared repository several times a day. This process is designed to detect and address integration issues early, improve software quality, and streamline the development process.
+
+Key Steps in the CI Process:
+-Code Commit:
+ Developers work on their local branches and make code changes. Once their changes are ready, they commit the code to a version control system like Git.A commit represents a snapshot of the code changes made 
+ to the repository.
+
+-Push Changes to a Shared Repository:
+ After committing locally, the changes are pushed to a shared repository (e.g., GitHub, GitLab, Bitbucket, or AWS CodeCommit).
+
+-Trigger CI Pipeline:
+ A CI server (e.g., Jenkins, GitHub Actions, GitLab CI/CD, or AWS CodeBuild) monitors the repository for changes. When code is pushed to the repository, it triggers the CI pipeline automatically.
+ The pipeline is a set of predefined steps that are executed to verify the new code, including building the application, running tests, and generating reports.
+
+-Build the Code:
+ The first step in the CI pipeline is usually the build process, where the code is compiled (if necessary), packaged, or otherwise prepared for testing and deployment.
+
+-Reporting and Notifications:
+ The CI server generates build reports and test results after the build and test stages.Developers are notified of the build status (e.g., success or failure) through various means such as email, messaging 
+ platforms (e.g., Slack), or through a dashboard.
+
+-Artifact Generation:
+ If the build and tests are successful, artifacts (e.g., executables, Docker images, or packaged application files) are generated. These artifacts can then be passed on to the next stage in the pipeline (like 
+ continuous delivery (CD)) or stored for deployment.
+
+What is CD?
+Continuous Delivery (CD) is a software development practice that builds on Continuous Integration (CI) and automates the process of deploying code changes to production or staging environments. While Continuous Integration (CI) focuses on automatically building and testing code changes, Continuous Delivery (CD) ensures that those changes can be automatically deployed to production or other environments, such as staging or testing, in a seamless and reliable way.
+
+
+What is aws systems manager?
+We can store sensitive information in aws systems manager using parameter store option such as username, passwords etc.
+
+What is aws CodePipeline?
+AWS codepipeline acts as an orchestrator tool which automatically invokes the aws codebuild or build services whenever code changes.
+
+What is aws code build?
+AWS CodeBuild is a fully managed continuous integration (CI) service that compiles source code, runs tests, and produces software packages that are ready for deployment.
+
+What is the difference between Jenkins and AWS codepipeline?
+Jenkins entirely takes care of all CI process and build process wherease codepipeline invokes other services such as Jenkins Build or AWS codebuild.
+
+Where you put sensitive data in aws?
+The parameter store under AWS Systems Manager is used to store passwords, usernames, url etc. Don't put docker password in buildspec file put it into parameter store.
+
+What is buildspec file?
+A buildspec is a YAML file used in AWS CodeBuild to define the build commands and settings for a project. It specifies how to compile, test, and package your application during the build process. The buildspec.yml file contains a set of instructions that AWS CodeBuild follows to perform each step in the build process, such as installing dependencies, running tests, or creating output artifacts.
+
+What are IAM Roles?
+IAM Roles (Identity and Access Management Roles) are a set of permissions in AWS that define what actions a service or user can perform on AWS resources. Roles allow you to delegate access to AWS services and resources securely without needing to share long-term credentials like access keys or secret keys.
+
