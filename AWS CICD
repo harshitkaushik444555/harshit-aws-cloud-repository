@@ -51,3 +51,5 @@ A buildspec is a YAML file used in AWS CodeBuild to define the build commands an
 What are IAM Roles?
 IAM Roles (Identity and Access Management Roles) are a set of permissions in AWS that define what actions a service or user can perform on AWS resources. Roles allow you to delegate access to AWS services and resources securely without needing to share long-term credentials like access keys or secret keys.
 
+Why we are using service role instead of IAM user in environment section of codebuild in CI process?
+Because code build is a service that is performing some actions not the iam user that is performing actions.
