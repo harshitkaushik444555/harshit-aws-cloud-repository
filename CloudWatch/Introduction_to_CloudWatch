@@ -1,0 +1,6 @@
+What is metric?
+A metric represents a time-ordered set of data points that are published to CloudWatch. Think of a metric as a variable to monitor, and the data points as representing the values of that variable over time.
+
+What does time-ordered means in metrics?
+"time-ordered" means that each data point in a metric is recorded with a specific timestamp in sequential order. This creates a timeline or sequence of events, so you can track how a metric changes over time.
+
