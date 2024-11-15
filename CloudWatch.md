@@ -48,3 +48,8 @@ What are log group?
 ```
 Cloud watch automatically creates a groups for your logs which are called log groups. For each project it will create a log group.
 ```
+What is time stamp?
+
+Each metric data point must be associated with a time stamp. The time stamp can be up to two weeks in the past and up to two hours into the future. If you do not provide a time stamp, CloudWatch creates a time stamp for you based on the time the data point was received.
+
+
