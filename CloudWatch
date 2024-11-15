@@ -4,3 +4,8 @@ A metric represents a time-ordered set of data points that are published to Clou
 What does time-ordered means in metrics?
 "time-ordered" means that each data point in a metric is recorded with a specific timestamp in sequential order. This creates a timeline or sequence of events, so you can track how a metric changes over time.
 
+What is time stamp?
+Each metric data point must be associated with a time stamp. The time stamp can be up to two weeks in the past and up to two hours into the future. If you do not provide a time stamp, CloudWatch creates a time stamp for you based on the time the data point was received.
+
+What are log group?
+Cloud watch automatically creates a groups for your logs which are called log groups. For each project it will create a log group.
