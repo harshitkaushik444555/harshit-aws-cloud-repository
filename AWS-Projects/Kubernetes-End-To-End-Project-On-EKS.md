@@ -64,11 +64,8 @@ kubectl get ingress -n game-2048
 '*' in hosts indicate anyone can access but address is not there.Once we deploy ingress controller there will be an address.
 
 Step 11. Now we will create an ingress controller which will read ingress resource game-2048 and will create a load balancer, target group and port for us.
-
 It just need an ingress resource.We will deploy an ALB controller.For this first we need to configure an oidc connector profile.We can deploy ALB controller 
-
 without oidc connector but it will fail. Because ALB controller need to access the application load balancer bcz alb controller is nothing but a k8s pod and it
-
 need to talk to some aws services.To talk it needs to have iam integrated.So we need to create a iam oidc provider.This is done in every organiztion.
 
 Step 12. Integrate iam oidc identity provider using below command
