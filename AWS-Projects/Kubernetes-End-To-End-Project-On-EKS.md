@@ -177,4 +177,12 @@ should manage.
 
 What is selector in service.yaml?
 The selector field is crucial for determining which Pods the Service should route traffic to. It acts as a filter, matching the labels on Pods with the labels specified in the selector.
+
+why ALB controller and ALB load balancer works together in aws eks?
+The AWS ALB Ingress Controller (or simply the ALB Controller) and the Application Load Balancer (ALB) work together in Amazon Elastic Kubernetes Service (EKS) to facilitate traffic routing and ingress management for applications deployed in a Kubernetes cluster. Here's how and why they work together:
+
+
+1.You define an Ingress resource in Kubernetes with annotations and configuration that specify routing rules, listeners, and target backends.
+2.The ALB Controller processes these Kubernetes resources and interacts with AWS APIs to provision and configure an ALB.
+3.The ALB routes incoming traffic based on the defined rules and sends it to the appropriate Kubernetes pods via the NodePort service or directly (via IP target mode).
 ```
