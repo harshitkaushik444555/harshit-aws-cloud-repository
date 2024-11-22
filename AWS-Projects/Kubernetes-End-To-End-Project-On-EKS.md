@@ -33,11 +33,11 @@ aws eks update-kubeconfig --name demo-cluster --region us-east-1
 7. Now Proceed with deployment of actual application. create fargate profile and a namespace for the application using below commands. You cqn also use default
 namespace.
 ```
-       eksctl create fargateprofile \
-    --cluster demo-cluster \
-    --region us-east-1 \
-    --name alb-sample-app \
-    --namespace game-2048
+    eksctl create fargateprofile \
+--cluster demo-cluster \
+--region us-east-1 \
+--name alb-sample-app \
+--namespace game-2048
 ```
 8.  You can check fargate profile in compute tab of aws eks. 
 
@@ -55,15 +55,13 @@ useless.
 ```
 kubectl get svc -n game-2048
 ```
-You will get the port number and using this port and node ip or anybody who has access to aws vpc can access this app but our goal is to access this app from 
-  
-outside the aws or give access to user.For this we have created the ingress.External field ip will be nill.
+You will get the port number and using this port and node ip or anybody who has access to aws vpc can access this app but our goal is to access this app from outside the aws or give access to user.For this we have created the ingress.External field ip will be nill.
 
 10. run
 ```
 kubectl get ingress -n game-2048
 ```
-* in hosts indicate anyone can access but address is not there.Once we deploy ingress controller there will be an address.
+'*' in hosts indicate anyone can access but address is not there.Once we deploy ingress controller there will be an address.
 
 11. Now we will create an ingress controller which will read ingress resource game-2048 and will create a load balancer, target group and port for us.
 
@@ -87,10 +85,10 @@ curl -O https://raw.githubusercontent.com/kubernetes-sigs/aws-load-balancer-cont
 ```
 -create policy
 ```
-   aws iam create-policy \
-    --policy-name AWSLoadBalancerControllerIAMPolicy \
-    --policy-document file://iam_policy.json
-  ```
+aws iam create-policy \
+  --policy-name AWSLoadBalancerControllerIAMPolicy \
+  --policy-document file://iam_policy.json
+```
 -create role
 ```
   eksctl create iamserviceaccount \
