@@ -48,11 +48,8 @@ Step 8. Now Deploy the deployment, service and Ingress of the application using 
 ```
 kubectl apply -f https://raw.githubusercontent.com/kubernetes-sigs/aws-load-balancer-controller/v2.5.4/docs/examples/2048/2048_full.yaml
 ```
-This file contains details of deployment, ingress and service configuration related to application.This example is from eks official documentation.
-  
-Till now we have create deployment, ingress resource and service but there is no ingress controller.Without ingress controller the ingress resource is 
-  
-useless.
+This file contains details of deployment, ingress and service configuration related to application.This example is from eks official documentation.  
+Till now we have create deployment, ingress resource and service but there is no ingress controller.Without ingress controller the ingress resource is useless.
 
 Step 9. Try to run following command
 ```
