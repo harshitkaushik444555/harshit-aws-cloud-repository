@@ -4,39 +4,34 @@ Follow the steps to deploy your app on AWS EKS
 2. Install Kubectl on your laptop.
 
 3. Install eksctl on your laptop.
-   ```
-   'eksctl' is a command-line tool specifically designed to simplify the process of creating, managing, and deleting 
-    Amazon EKS (Elastic Kubernetes Service) clusters. It is an open-source tool developed and maintained by Weaveworks in 
-    collaboration with AWS.
-   ```
+```
+'eksctl' is a command-line tool specifically designed to simplify the process of creating, managing, and deleting 
+Amazon EKS (Elastic Kubernetes Service) clusters. It is an open-source tool developed and maintained by Weaveworks in 
+collaboration with AWS.
+```
 
-5. Install EKS cluster on AWS EKS using fargate eksctl command.It will take around 15-20 minutes, so wait.Using eksctl is easy way
-   
-   to create eks cluster.
+5. Install EKS cluster on AWS EKS using fargate eksctl command.It will take around 15-20 minutes, so wait.Using eksctl is easy way to create eks cluster.
 ```
-   eksctl create cluster --name demo-cluster --region us-east-1 --fargate
+eksctl create cluster --name demo-cluster --region us-east-1 --fargate
 ```
-   Here --fargate:
-   Specifies that this cluster will use AWS Fargate to run pods. Fargate is a serverless compute engine for containers that eliminates the need to provision or 
+Here --fargate:
+Specifies that this cluster will use AWS Fargate to run pods. Fargate is a serverless compute engine for containers that eliminates the need to provision or 
+manage EC2 instances.When using Fargate, you don't manage the underlying infrastructure; AWS handles it, allowing you to focus entirely on your Kubernetes 
+workloads.
    
-   manage EC2 instances.When using Fargate, you don't manage the underlying infrastructure; AWS handles it, allowing you to focus entirely on your Kubernetes 
-  
-   workloads.
+Note: 
    
-   Note: 
-   
-   To delete already existing cluster go to CloudFormation in aws and select the cluster and delete it.
+To delete already existing cluster go to CloudFormation in aws and select the cluster and delete it.
 
 6. Next thing is to download kubeconfig file because you will not have to go to aws ui and inside the cluster to check resources like pods, service etc.
 
-   To download:
-   ```
-   aws eks update-kubeconfig --name demo-cluster --region us-east-1
-   ```
+To download:
+```
+aws eks update-kubeconfig --name demo-cluster --region us-east-1
+```
 
-8. Now Proceed with deployment of actual application. create fargate profile and a namespace for the application using below commands. You cqn also use default
-
-   namespace.
+7. Now Proceed with deployment of actual application. create fargate profile and a namespace for the application using below commands. You cqn also use default
+namespace.
 ```
        eksctl create fargateprofile \
     --cluster demo-cluster \
@@ -44,31 +39,31 @@ Follow the steps to deploy your app on AWS EKS
     --name alb-sample-app \
     --namespace game-2048
 ```
-    You can check fargate profile in compute tab of aws eks. 
+8.  You can check fargate profile in compute tab of aws eks. 
 
-10. Now Deploy the deployment, service and Ingress of the application using following command.
-    ```
-    kubectl apply -f https://raw.githubusercontent.com/kubernetes-sigs/aws-load-balancer-controller/v2.5.4/docs/examples/2048/2048_full.yaml
-    ```
-  This file contains details of deployment, ingress and service configuration related to application.This example is from eks official documentation.
+9. Now Deploy the deployment, service and Ingress of the application using following command.
+```
+kubectl apply -f https://raw.githubusercontent.com/kubernetes-sigs/aws-load-balancer-controller/v2.5.4/docs/examples/2048/2048_full.yaml
+```
+This file contains details of deployment, ingress and service configuration related to application.This example is from eks official documentation.
   
-  Till now we have create deployment, ingress resource and service but there is no ingress controller.Without ingress controller the ingress resource is 
+Till now we have create deployment, ingress resource and service but there is no ingress controller.Without ingress controller the ingress resource is 
   
-  useless.
+useless.
 
-8. Try to run following command
-  ```
-  kubectl get svc -n game-2048
-  ```
-  You will get the port number and using this port and node ip or anybody who has access to aws vpc can access this app but our goal is to access this app from 
+10. Try to run following command
+```
+kubectl get svc -n game-2048
+```
+You will get the port number and using this port and node ip or anybody who has access to aws vpc can access this app but our goal is to access this app from 
   
-  outside the aws or give access to user.For this we have created the ingress.External field ip will be nill.
+outside the aws or give access to user.For this we have created the ingress.External field ip will be nill.
 
 10. run
-    ```
-   kubectl get ingress -n game-2048
-   ```
-   * in hosts indicate anyone can access but address is not there.Once we deploy ingress controller there will be an address.
+```
+kubectl get ingress -n game-2048
+```
+* in hosts indicate anyone can access but address is not there.Once we deploy ingress controller there will be an address.
 
 11. Now we will create an ingress controller which will read ingress resource game-2048 and will create a load balancer, target group and port for us.
 
@@ -80,7 +75,7 @@ need to talk to some aws services.To talk it needs to have iam integrated.So we 
 
 12. Integrate iam oidc identity provider using below command
 ```
-   eksctl utils associate-iam-oidc-provider --cluster $cluster_name --approve
+eksctl utils associate-iam-oidc-provider --cluster $cluster_name --approve
 ```
 13. To install alb controller you first need to download and create policy to give access to alb controller to aws resources. This is very big policy json file
 
@@ -88,7 +83,7 @@ and you don't need to learn anything about it because it is provided by alb cont
 
 -download policy
 ```
-    curl -O https://raw.githubusercontent.com/kubernetes-sigs/aws-load-balancer-controller/v2.5.4/docs/install/iam_policy.json
+curl -O https://raw.githubusercontent.com/kubernetes-sigs/aws-load-balancer-controller/v2.5.4/docs/install/iam_policy.json
 ```
 -create policy
 ```
@@ -109,18 +104,18 @@ and you don't need to learn anything about it because it is provided by alb cont
 We are attaching this role to a service account 'iamserviceaccount' because when a pod runs it will have a service account.So that this pod can talk to other
 aws resources.
 
-13.Now install actual alb controller
-   Add repo:
+13. Now install actual alb controller
+Add repo:
 ```
-   helm repo add eks https://aws.github.io/eks-charts
+helm repo add eks https://aws.github.io/eks-charts
 ```
-   This helm chart will create the alb controller and it will use the service account to run the pod.
+This helm chart will create the alb controller and it will use the service account to run the pod.
 
-  Update repo:
+Update repo:
 ``` 
-  helm repo update eks
+helm repo update eks
 ```
-   Install:
+Install:
 ```
    helm install aws-load-balancer-controller eks/aws-load-balancer-controller -n kube-system \
   --set clusterName=<your-cluster-name> \
@@ -129,7 +124,7 @@ aws resources.
   --set region=<region> \
   --set vpcId=<your-vpc-id>
 ```
-  Verify there should be two replicas 
+Verify there should be two replicas 
 ```
 kubectl get deployment -n kube-system aws-load-balancer-controller
 ```
